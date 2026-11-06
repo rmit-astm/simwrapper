@@ -502,12 +502,14 @@ rel="stylesheet"
     <script type="module" src="/src/js/avro-browserify.js"></script>
     <script type="module" src="/src/main.ts"></script>
     <script>
-    // Request auth tokens from the parent (Amplify app)
-    window.parent.postMessage("requestAuthToken", "*");
+    // Request auth tokens from the parent (Amplify app), and only accept the
+    // reply from this site, sent by the embedding app.
+    window.parent.postMessage("requestAuthToken", window.location.origin);
 
     // Listen for the response
     window.addEventListener("message", (event) => {
-      if (event.data.idToken) {
+      if (event.origin !== window.location.origin || event.source !== window.parent) return;
+      if (event.data?.idToken) {
         //console.log("Simwrapper received tokens:", event.data.accessToken);
         // Store or use the tokens as needed
       }

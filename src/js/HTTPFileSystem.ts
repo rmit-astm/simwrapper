@@ -866,7 +866,10 @@ class HTTPFileSystem {
     // Request and receive the message from Amplify containing the username and access token
     const { token, username } = await new Promise<{ token: string; username: string }>((resolve, reject) => {
       const handleMessage = (event: MessageEvent) => {
-        if (event.data.accessToken && event.data.username) {
+        // Only accept the auth reply from this site, sent by the embedding app.
+        if (event.origin !== window.location.origin || event.source !== window.parent) return;
+        window.removeEventListener('message', handleMessage);
+        if (event.data?.accessToken && event.data?.username) {
           resolve({
             token: event.data.accessToken,
             username: event.data.username,
@@ -876,8 +879,8 @@ class HTTPFileSystem {
         }
       };
 
-      window.parent.postMessage('requestAuthToken', '*');
-      window.addEventListener('message', handleMessage, { once: true });
+      window.parent.postMessage('requestAuthToken', window.location.origin);
+      window.addEventListener('message', handleMessage);
     });
 
     if (!token || !username) {

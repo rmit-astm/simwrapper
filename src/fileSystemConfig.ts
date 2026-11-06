@@ -19,7 +19,10 @@ if (typeof window !== 'undefined') {
 export async function getAuthTokenAndUsername(): Promise<{ token: string; username: string }> {
   return new Promise<{ token: string; username: string }>((resolve, reject) => {
     const handleMessage = (event: MessageEvent) => {
-      if (event.data.accessToken && event.data.username) {
+      // Only accept the auth reply from this site, sent by the embedding app.
+      if (event.origin !== window.location.origin || event.source !== window.parent) return;
+      window.removeEventListener('message', handleMessage);
+      if (event.data?.accessToken && event.data?.username) {
         resolve({
           token: event.data.accessToken,
           username: event.data.username,
@@ -29,8 +32,8 @@ export async function getAuthTokenAndUsername(): Promise<{ token: string; userna
       }
     };
 
-    window.parent.postMessage('requestAuthToken', '*');
-    window.addEventListener('message', handleMessage, { once: true });
+    window.parent.postMessage('requestAuthToken', window.location.origin);
+    window.addEventListener('message', handleMessage);
   });
 }
 
