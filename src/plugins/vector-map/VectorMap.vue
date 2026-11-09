@@ -247,6 +247,13 @@ export default defineComponent({
           Math.max(2, colors.length)
         )
       }
+      // MapLibre step expressions require strictly ascending inputs. Quantile
+      // breaks can repeat when many SA1 areas share the same value.
+      breaks = breaks
+        .map((value) => Number(value))
+        .filter((value) => Number.isFinite(value))
+        .sort((a, b) => a - b)
+        .filter((value, index, list) => index === 0 || value > list[index - 1])
       if (colors.length < breaks.length + 1) {
         colors = this.paletteColors(layer.palette || 'Purples', breaks.length + 1)
       }
