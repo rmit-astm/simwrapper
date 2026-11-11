@@ -4,6 +4,7 @@ import { SaxEventType, SAXParser } from 'sax-wasm'
 import * as ZStd from 'zstd-wasm-decoder'
 
 import { gUnzip } from '@/js/util'
+import { requestParentAuth } from '@/js/viewerBridge'
 
 import {
   DirectoryEntry,
@@ -863,25 +864,8 @@ class HTTPFileSystem {
   private async _getDirectoryFromAWS(scaryPath: string): Promise<DirectoryEntry> {
     const headers: Record<string, string> = {};
 
-    // Request and receive the message from Amplify containing the username and access token
-    const { token, username } = await new Promise<{ token: string; username: string }>((resolve, reject) => {
-      const handleMessage = (event: MessageEvent) => {
-        // Only accept the auth reply from this site, sent by the embedding app.
-        if (event.origin !== window.location.origin || event.source !== window.parent) return;
-        window.removeEventListener('message', handleMessage);
-        if (event.data?.accessToken && event.data?.username) {
-          resolve({
-            token: event.data.accessToken,
-            username: event.data.username,
-          });
-        } else {
-          reject(new Error('No token or username received from parent.'));
-        }
-      };
-
-      window.parent.postMessage('requestAuthToken', window.location.origin);
-      window.addEventListener('message', handleMessage);
-    });
+    // Request the username and access token from the FASTrack parent.
+    const { token, username } = await requestParentAuth();
 
     if (!token || !username) {
       throw new Error('No authentication token or username found. Please log in.');

@@ -15,9 +15,12 @@ const indexTemplate =
 </html>`
 
 const getFolderContent = source =>
-  fs.readdirSync(source, {
-    withFileTypes: true,
-  })
+  fs
+    .readdirSync(source, {
+      withFileTypes: true,
+    })
+    // Sort explicitly so the generated index is identical across filesystems.
+    .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
 
 const buildIndexForFolder = source => {
   const content = getFolderContent(source)

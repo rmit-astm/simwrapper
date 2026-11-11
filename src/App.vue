@@ -39,6 +39,7 @@ import globalStore from '@/store'
 import plugins from '@/plugins/pluginRegistry'
 import { ColorScheme, MAP_STYLES_OFFLINE } from '@/Globals'
 import { addInitialLocalFilesystems, addFlaskFilesystems } from '@/fileSystemConfig'
+import { announceViewerReady } from '@/js/viewerBridge'
 import * as maplibregl from 'maplibre-gl'
 
 let doThisOnceForLocalFiles = true
@@ -179,6 +180,8 @@ export default defineComponent({
     },
   },
   mounted() {
+    announceViewerReady()
+
     // theme
     const theme = localStorage.getItem('colorscheme')
       ? localStorage.getItem('colorscheme')

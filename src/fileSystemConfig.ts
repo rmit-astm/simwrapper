@@ -1,6 +1,7 @@
 import { get, set, clear } from 'idb-keyval';
 import { FileSystemConfig, FileSystemAPIHandle } from '@/Globals';
 import globalStore from '@/store';
+import { requestParentAuth } from '@/js/viewerBridge';
 
 const BASE_URL = import.meta.env.BASE_URL;
 
@@ -17,24 +18,7 @@ if (typeof window !== 'undefined') {
 
 // Utility function to fetch the username and token
 export async function getAuthTokenAndUsername(): Promise<{ token: string; username: string }> {
-  return new Promise<{ token: string; username: string }>((resolve, reject) => {
-    const handleMessage = (event: MessageEvent) => {
-      // Only accept the auth reply from this site, sent by the embedding app.
-      if (event.origin !== window.location.origin || event.source !== window.parent) return;
-      window.removeEventListener('message', handleMessage);
-      if (event.data?.accessToken && event.data?.username) {
-        resolve({
-          token: event.data.accessToken,
-          username: event.data.username,
-        });
-      } else {
-        reject(new Error('No token or username received from parent.'));
-      }
-    };
-
-    window.parent.postMessage('requestAuthToken', window.location.origin);
-    window.addEventListener('message', handleMessage);
-  });
+  return requestParentAuth();
 }
 
 // Function to generate the baseURL with the username
