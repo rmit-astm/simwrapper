@@ -10,7 +10,7 @@ import { ArcLayer } from '@deck.gl/layers'
 import { HexagonLayer } from '@deck.gl/aggregation-layers'
 import { MapboxOverlay } from '@deck.gl/mapbox'
 import colormap from 'colormap'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 
 import globalStore from '@/store'
 import { NewRowCache } from './CsvGzipParser.worker'

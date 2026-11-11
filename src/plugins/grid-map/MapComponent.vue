@@ -8,7 +8,7 @@
 import { defineComponent, PropType } from 'vue'
 import { GridCellLayer } from '@deck.gl/layers'
 import { MapboxOverlay } from '@deck.gl/mapbox'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 import { debounce } from 'debounce'
 
 import globalStore from '@/store'

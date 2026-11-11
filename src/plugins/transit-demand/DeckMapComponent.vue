@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 import { MapboxOverlay } from '@deck.gl/mapbox'
 import { LineLayer, GeoJsonLayer, SolidPolygonLayer } from '@deck.gl/layers'
 import { color } from 'd3-color'

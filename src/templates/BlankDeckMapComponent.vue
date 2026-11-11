@@ -8,7 +8,7 @@
 import { defineComponent, PropType } from 'vue'
 import { ArcLayer } from '@deck.gl/layers'
 import { MapboxOverlay } from '@deck.gl/mapbox'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 
 import globalStore from '@/store'
 import { disable3DBuildings, enable3DBuildings } from '@/js/maplibre/threeDBuildings'

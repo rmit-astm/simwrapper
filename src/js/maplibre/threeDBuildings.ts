@@ -1,4 +1,4 @@
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 
 // Fixed id so we can find/remove/update the layer.
 export const THREE_D_BUILDINGS_LAYER_ID = 'simwrapper-3d-buildings'

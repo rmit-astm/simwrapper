@@ -8,7 +8,7 @@
 import { defineComponent, PropType } from 'vue'
 import { MapboxOverlay } from '@deck.gl/mapbox'
 import { DataFilterExtension } from '@deck.gl/extensions'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 
 import globalStore from '@/store'
 import MovingIconsLayer from '@/layers/moving-icons/moving-icons-vehicles-layer'

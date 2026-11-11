@@ -8,7 +8,7 @@ import { defineComponent, PropType } from 'vue'
 import { GeoJsonLayer, LineLayer } from '@deck.gl/layers'
 import { DataFilterExtension } from '@deck.gl/extensions'
 import { MapboxOverlay } from '@deck.gl/mapbox'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 import { rgb } from 'd3-color'
 
 import globalStore from '@/store'

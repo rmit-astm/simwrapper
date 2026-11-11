@@ -2,7 +2,7 @@
 // There is no license file on that project!
 
 import { Deck } from '@deck.gl/core'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 
 import globalStore from '@/store'
 import { ColorScheme } from '@/Globals'

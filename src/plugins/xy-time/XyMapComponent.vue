@@ -9,7 +9,7 @@ import { defineComponent, PropType } from 'vue'
 import { MapboxOverlay } from '@deck.gl/mapbox'
 import { DataFilterExtension } from '@deck.gl/extensions'
 import ScatterplotColorBinsLayer from './ScatterplotColorBinsLayer'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 import * as timeConvert from 'convert-seconds'
 
 import globalStore from '@/store'

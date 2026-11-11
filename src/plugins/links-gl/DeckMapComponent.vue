@@ -9,7 +9,7 @@ import { defineComponent, PropType } from 'vue'
 import { MapboxOverlay } from '@deck.gl/mapbox'
 import { LineLayer } from '@deck.gl/layers'
 import { COORDINATE_SYSTEM } from '@deck.gl/core'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 import { format } from 'mathjs'
 
 import globalStore from '@/store'

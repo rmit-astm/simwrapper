@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { MapboxOverlay } from '@deck.gl/mapbox'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 import { debounce } from 'debounce'
 
 import globalStore from '@/store'
