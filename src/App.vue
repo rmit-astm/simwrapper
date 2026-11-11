@@ -41,12 +41,6 @@ import { ColorScheme, MAP_STYLES_OFFLINE } from '@/Globals'
 import { addInitialLocalFilesystems, addFlaskFilesystems } from '@/fileSystemConfig'
 import * as maplibregl from 'maplibre-gl'
 
-// MAPBOX TOKEN
-// this is a required workaround to get the mapbox token assigned in TypeScript
-// see https://stackoverflow.com/questions/44332290/mapbox-gl-typing-wont-allow-accesstoken-assignment
-const writableMapBox: any = maplibregl
-writableMapBox.accessToken = ''
-
 let doThisOnceForLocalFiles = true
 
 const pluginComponents = {} as any
