@@ -7,7 +7,7 @@
 // archive with a FetchSource that shares a mutable Headers object and refresh
 // the token through the parent app. Standalone/public archives (no parent, or
 // no auth reply) simply fetch without the header, exactly as before.
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 import { FetchSource, PMTiles, Protocol } from 'pmtiles'
 
 import { getAuthTokenAndUsername } from '@/fileSystemConfig'

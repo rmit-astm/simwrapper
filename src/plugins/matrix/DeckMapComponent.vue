@@ -7,7 +7,7 @@
 import { defineComponent, PropType } from 'vue'
 import { GeoJsonLayer } from '@deck.gl/layers'
 import { MapboxOverlay } from '@deck.gl/mapbox'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 
 import { debounce } from '@/js/util'
 import globalStore from '@/store'

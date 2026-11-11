@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import maplibregl, { MapMouseEvent, PositionOptions } from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 
 import globalStore from '@/store'
 import { ColorScheme, REACT_VIEW_HANDLES } from '@/Globals'

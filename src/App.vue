@@ -39,7 +39,7 @@ import globalStore from '@/store'
 import plugins from '@/plugins/pluginRegistry'
 import { ColorScheme, MAP_STYLES_OFFLINE } from '@/Globals'
 import { addInitialLocalFilesystems, addFlaskFilesystems } from '@/fileSystemConfig'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
 
 // MAPBOX TOKEN
 // this is a required workaround to get the mapbox token assigned in TypeScript
